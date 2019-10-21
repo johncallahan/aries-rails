@@ -10,6 +10,10 @@ class WalletsController < ApplicationController
   # GET /wallets/1
   # GET /wallets/1.json
   def show
+    aries_wallet = AriesWallet.new(@wallet.name)
+    aries_wallet.open
+    @handle = aries_wallet.get_handle
+    aries_wallet.close
   end
 
   # GET /wallets/new
@@ -28,6 +32,7 @@ class WalletsController < ApplicationController
     aries_wallet = AriesWallet.new(@wallet.name)
     aries_wallet.create
     aries_wallet.open
+    aries_wallet.close
 
     respond_to do |format|
       if @wallet.save

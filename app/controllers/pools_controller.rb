@@ -10,6 +10,10 @@ class PoolsController < ApplicationController
   # GET /pools/1
   # GET /pools/1.json
   def show
+    aries_pool = AriesPool.new(@pool.name)
+    aries_pool.open
+    @handle = aries_pool.get_handle
+    aries_pool.close
   end
 
   # GET /pools/new
@@ -28,6 +32,7 @@ class PoolsController < ApplicationController
     aries_pool = AriesPool.new(@pool.name)
     aries_pool.create
     aries_pool.open
+    aries_pool.close
 
     respond_to do |format|
       if @pool.save
