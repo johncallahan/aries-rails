@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :pools
   resources :wallets
-  root "wallets#index"
+  root "pools#index"
 end
