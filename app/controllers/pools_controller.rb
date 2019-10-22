@@ -10,7 +10,7 @@ class PoolsController < ApplicationController
   # GET /pools/1
   # GET /pools/1.json
   def show
-    aries_pool = AriesPool.new(@pool.name)
+    aries_pool = AriesPool.new(@pool.nameOfPool)
     aries_pool.open
     @handle = aries_pool.get_handle
     aries_pool.close
@@ -29,7 +29,7 @@ class PoolsController < ApplicationController
   # POST /pools.json
   def create
     @pool = Pool.new(pool_params)
-    aries_pool = AriesPool.new(@pool.name)
+    aries_pool = AriesPool.new(@pool.nameOfPool)
     aries_pool.create
     aries_pool.open
     aries_pool.close
@@ -62,6 +62,10 @@ class PoolsController < ApplicationController
   # DELETE /pools/1
   # DELETE /pools/1.json
   def destroy
+    aries_pool = AriesPool.new(@pool.nameOfPool)
+    aries_pool.open
+    aries_pool.close
+    aries_pool.delete
     @pool.destroy
     respond_to do |format|
       format.html { redirect_to pools_url, notice: 'Pool was successfully destroyed.' }

@@ -10,7 +10,7 @@ class WalletsController < ApplicationController
   # GET /wallets/1
   # GET /wallets/1.json
   def show
-    aries_wallet = AriesWallet.new(@wallet.name)
+    aries_wallet = AriesWallet.new(@wallet.nameOfWallet)
     aries_wallet.open
     @handle = aries_wallet.get_handle
     aries_wallet.close
@@ -29,7 +29,7 @@ class WalletsController < ApplicationController
   # POST /wallets.json
   def create
     @wallet = Wallet.new(wallet_params)
-    aries_wallet = AriesWallet.new(@wallet.name)
+    aries_wallet = AriesWallet.new(@wallet.nameOfWallet)
     aries_wallet.create
     aries_wallet.open
     aries_wallet.close
@@ -62,6 +62,10 @@ class WalletsController < ApplicationController
   # DELETE /wallets/1
   # DELETE /wallets/1.json
   def destroy
+    aries_wallet = AriesWallet.new(@wallet.nameOfWallet)
+    aries_wallet.open
+    aries_wallet.close
+    aries_wallet.delete
     @wallet.destroy
     respond_to do |format|
       format.html { redirect_to wallets_url, notice: 'Wallet was successfully destroyed.' }
