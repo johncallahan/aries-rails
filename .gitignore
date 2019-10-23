@@ -10,6 +10,12 @@
 # Ignore emacs temp files
 *~
 
+# Ignore Mac junk
+.DS_Store
+
+# Ignore local notes
+HOWTO
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
