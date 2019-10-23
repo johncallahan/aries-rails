@@ -1,24 +1,29 @@
-# README
+A very simple sample Ruby-on-Rails (Rails6) project using [aries-sdk-ruby](https://github.com/hyperledger/aries-sdk-ruby).
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Installation
 
-Things you may want to cover:
+    $ git clone https://github.com/johncallahan/aries-rails
+    $ cd aries-rails
+    $ bundle install
+    $ export POSTGRES_USERNAME=root
+    $ export HOSTNAME=localhost
+    $ export HOSTPORT=3000
+    $ export TEST_POOL_IP=<address of Indy node>
+    $ export LIBRARY_PATH=/path/to/indy-sdk/libindy/target/debug/
+    $ rake db:create
+    $ rake db:migrate
+    $ mailcatcher (optional - to catch signup emails)
+    $ rails s
 
-* Ruby version
+You will need an Indy node (see https://github.com/hyperledger/indy-sdk) for the TEST_POOL_IP and Postgres (I haven't tested SQLite or MySQL) running on the host.  Also, because of the dependency on libindy client (the LIBRARY_PATH environment variable), you cannot run this yet on Heroku (or Dokku) until an appropriate buildpack is available, but a development deploy works fine.
 
-* System dependencies
+If the app starts successfully, navigate to http://localhost:3000/ (if deployed locally) and you'll see:
 
-* Configuration
+![main login](images/aries-rails-mainlogin.png)
 
-* Database creation
+The app uses [devise](https://github.com/plataformatec/devise) for authentication.  Create an account via signup and login to see pool and wallets:
 
-* Database initialization
+![pools](images/aries-rails-pools.png)
 
-* How to run the test suite
+![wallets](images/aries-rails-wallets.png)
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

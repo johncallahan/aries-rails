@@ -12,6 +12,8 @@
   <body>
     <% if user_signed_in? %>
       <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+      &nbsp;&nbsp; | &nbsp;&nbsp; <%= link_to('Wallets', wallets_path) %>
+      &nbsp;&nbsp; | &nbsp;&nbsp; <%= link_to('Pools', pools_path) %>
     <% end %>
     <p class="alert"><%= alert %></p>
     <%= yield %>
