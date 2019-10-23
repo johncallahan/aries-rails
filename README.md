@@ -5,7 +5,8 @@ A very simple sample Ruby-on-Rails (Rails6) project using [aries-sdk-ruby](https
     $ git clone https://github.com/johncallahan/aries-rails
     $ cd aries-rails
     $ bundle install
-    $ export POSTGRES_USERNAME=root
+    $ export POSTGRES_USERNAME=<your PG account>
+    $ export POSTGRES_PASSWORD=<your PG password>
     $ export HOSTNAME=localhost
     $ export HOSTPORT=3000
     $ export TEST_POOL_IP=<address of Indy node>
